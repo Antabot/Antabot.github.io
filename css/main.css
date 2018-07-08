@@ -1936,7 +1936,7 @@ img:hover {
   width: 4px;
   height: 4px;
   border-radius: 50%;
-  background: #3bbe60;
+  background: #17ff22;
 }
 .links-of-blogroll {
   font-size: 13px;
@@ -3238,7 +3238,7 @@ img:hover {
   }
 }
 body {
-  background: url("/images/NERV.jpg");
+  background: url("/images/eva1.jpg");
   background-size: cover;
   background-repeat: no-repeat;
   background-attachment: fixed;
