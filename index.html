@@ -251,6 +251,177 @@
   
   
   <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/24/Java-Note-2/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="Loven Gao">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="/images/Avatar1.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Gao">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2018/07/24/Java-Note-2/" itemprop="url">JavaEE从入门到放弃（二）：Servlet简介与实战</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-24T21:42:24+08:00">
+                2018-07-24
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="Servlet-简介"><a href="#Servlet-简介" class="headerlink" title="Servlet 简介"></a>Servlet 简介</h1><h2 id="如何理解-Servlet"><a href="#如何理解-Servlet" class="headerlink" title="如何理解 Servlet"></a>如何理解 Servlet</h2><ul>
+<li><strong>Servlet = Server + Applet（Applet，小程序）</strong></li>
+<li>Servlet是运行在 Web 服务器或应用服务器上的 <strong>Java “小”程序</strong>。</li>
+<li>使用 Servlet，可以收集来自网页表单的用户输入，呈现来自数据库或者其他源的记录，即<strong>与用户交互</strong>，还可以动态创建网页。也就是说，它几乎可以完成网站的<strong>所有功能</strong>。</li>
+<li>广义的 Servlet 指任何实现了 Servlet 接口的 Java 程序。</li>
+<li>Servlet 是学习 JSP 的基础。</li>
+<li><p>Servlet 在 网络中所处的位置如下 ：</p>
+<p>  <img src="https://i.imgur.com/82c7bsu.png" alt="Servlet层次"></p>
+</li>
+</ul>
+<h2 id="Servlet-的生命周期"><a href="#Servlet-的生命周期" class="headerlink" title="Servlet 的生命周期"></a>Servlet 的生命周期</h2><ol>
+<li>当 Servlet 第一次被调用的时候，其实例会被装在内存中。这个过程只会进行一次。</li>
+<li>Servlet 的 service 函数将被调用。</li>
+<li>在之后的访问中，service 函数直接被调用。</li>
+<li>当 web 应用 reload 或者服务器被关闭时，Servlet 的实例被销毁。</li>
+</ol>
+<h1 id="实战：开发-HelloServlet-程序"><a href="#实战：开发-HelloServlet-程序" class="headerlink" title="实战：开发 HelloServlet 程序"></a>实战：开发 HelloServlet 程序</h1><p>Servlet 是 Web 应用的一部分，需要部署在服务器中。</p>
+<p>这里，我们使用 Eclipse 的 JavaEE 版本结合 Tomcat 服务器进行开发。</p>
+<p>部署 Tomcat 的办法请参考：<a href="http://how2j.cn/k/tomcat/tomcat-deploy/1143.html" target="_blank" rel="noopener">在 Tomcat 中部署JAVA WEB应用</a></p>
+<p>下列内容参考自 <a href="http://how2j.cn/" target="_blank" rel="noopener">How2J.cn</a>，这个网站为我学习 Java 提供了很大帮助，有学习的各个阶段所需的实战小练习，感谢站长！</p>
+<blockquote>
+<p>Eclipse 等 IDE 可以很方便地创建使用 Servlet 的 Web 程序，但对于初学者来说，建议先通过手动配置加深理解。</p>
+</blockquote>
+<h2 id="创建普通-Java-项目"><a href="#创建普通-Java-项目" class="headerlink" title="创建普通 Java 项目"></a>创建普通 Java 项目</h2><p>打开 Eclipse ，File-&gt;New-&gt;Java Project，创建项目 MyServlet</p>
+<p><img src="https://i.imgur.com/Sdrt4uo.png" alt="创建java项目"></p>
+<h2 id="导入必须的servlet-api-jar包"><a href="#导入必须的servlet-api-jar包" class="headerlink" title="导入必须的servlet-api.jar包"></a>导入必须的servlet-api.jar包</h2><p>开发 Servlet 需要用到 servlet-api.jar 这个包里的相关类。</p>
+<p>servlet-api.jar 包位于 \tomcat\lib\servlet-api.jar<br>(我的路径为 D:\apache-tomcat-9.0.10\lib\servlet-api.jar)</p>
+<p>导入办法:</p>
+<p>右键点击项目 -&gt; Properties -&gt; Java Build Path -&gt;Libraries -&gt; Add External JARs，按上面的路径导入 jar 包，然后 Apply。</p>
+<p><img src="https://i.imgur.com/ZW3r5zy.png" alt="添加jar"></p>
+<h2 id="编写-Servlet"><a href="#编写-Servlet" class="headerlink" title="编写 Servlet"></a>编写 Servlet</h2><blockquote>
+<p><strong>HttpServlet</strong> 实现了专门用于响应HTTP请求的 Servlet，提供了响应对应 HTTP 标准请求的 doGet()、doPost() 等方法。</p>
+</blockquote>
+<p>在项目中新建继承 HttpServlet 的 HelloServlet 类，代码如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">import java.io.IOException;</span><br><span class="line">import java.util.Date;</span><br><span class="line">import javax.servlet.http.HttpServlet;</span><br><span class="line">import javax.servlet.http.HttpServletRequest;</span><br><span class="line">import javax.servlet.http.HttpServletResponse;</span><br><span class="line"> </span><br><span class="line">public class HelloServlet extends HttpServlet &#123;</span><br><span class="line">	//重写doGet()方法</span><br><span class="line">    public void doGet(HttpServletRequest request, </span><br><span class="line">			HttpServletResponse response) &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            //输出html</span><br><span class="line">            response.getWriter().println(&quot;&lt;h1&gt;Hello Servlet!&lt;/h1&gt;&quot;);</span><br><span class="line">        &#125; catch (IOException e) &#123;</span><br><span class="line">            e.printStackTrace();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">     </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="配置-web-xml"><a href="#配置-web-xml" class="headerlink" title="配置 web.xml"></a>配置 web.xml</h2><p>在 MyServlet 下创建 web 文件夹，接着再创建目录 web/WEB-INF，然后在 WEB-INF 目录中创建 web.xml（也可以在资源管理器中创建）</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;</span><br><span class="line">&lt;web-app&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;servlet&gt;</span><br><span class="line">        &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;</span><br><span class="line">        &lt;servlet-class&gt;HelloServlet&lt;/servlet-class&gt;</span><br><span class="line">    &lt;/servlet&gt;</span><br><span class="line"> </span><br><span class="line">    &lt;servlet-mapping&gt;</span><br><span class="line">        &lt;servlet-name&gt;HelloServlet&lt;/servlet-name&gt;</span><br><span class="line">        &lt;url-pattern&gt;/hello&lt;/url-pattern&gt;</span><br><span class="line">    &lt;/servlet-mapping&gt;</span><br><span class="line"> </span><br><span class="line">&lt;/web-app&gt;</span><br></pre></td></tr></table></figure>
+<p>web.xml 提供了路径与 servlet 的映射关系，把 /hello(url-pattern) 这个路径，映射到 HelloServlet 这个类上。</p>
+<p>servlet 标签下的 &lt;servlet-name&gt; 与 &lt;servlet-mapping&gt; 标签下的 &lt;servlet-name&gt; <strong>必须一样</strong>。</p>
+<p>&lt;servlet-name&gt; 与 &lt;servlet-class&gt; 可以不一样，但是为了便于理解与维护，一般都会写的一样。 </p>
+<h2 id="指定项目输出到-classes-目录"><a href="#指定项目输出到-classes-目录" class="headerlink" title="指定项目输出到 classes 目录"></a>指定项目输出到 classes 目录</h2><p>在 ecilpse中,默认输出的 class 是在 bin 目录下，但是 tomcat 在默认情况下，会到WEB-INF/classes 这个目录下去寻找。 所以需要通过配置，使得 eclipse 的 class 文件输出到WEB-INF/classes目录下。</p>
+<p>更改方法：</p>
+<p>首先在 WEB-INF 目录下新建 classes 文件夹</p>
+<p>项目右键-&gt;properties-&gt;Java Build Path-&gt;Source-&gt;Browse</p>
+<p>选择 MyServlet/web/WEB-INF/classes</p>
+<p><img src="https://i.imgur.com/NAq08eM.png" alt="更改输出目录"></p>
+<h2 id="配置-Tomcat-的server-xml-中的-lt-context-gt"><a href="#配置-Tomcat-的server-xml-中的-lt-context-gt" class="headerlink" title="配置 Tomcat 的server.xml 中的 &lt;context&gt;"></a>配置 Tomcat 的server.xml 中的 &lt;context&gt;</h2><p>打开 tomcat/conf/sever.xml，在 &lt;Host&gt; 标签的最后加一行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;Context path=&quot;/&quot; docBase=&quot;D:\workspace\MyServlet\web&quot; debug=&quot;0&quot; reloadable=&quot;false&quot; /&gt;</span><br></pre></td></tr></table></figure></p>
+<p>其中 docBase 的值为项目的 web 文件夹。path=”/“ 表示可以直接通过设置的路径 \hello 访问项目。</p>
+<h2 id="启动-Tomcat，访问-localhost-hello"><a href="#启动-Tomcat，访问-localhost-hello" class="headerlink" title="启动 Tomcat，访问 localhost/hello"></a>启动 Tomcat，访问 localhost/hello</h2><p>运行 tomcat\bin\startup.bat</p>
+<p>这里我的 Tomcat 端口是8080，故在浏览器输入地址 <a href="http://localhost:8080/hello" target="_blank" rel="noopener">http://localhost:8080/hello</a> ，就可以看到 Servlet 的输出结果啦！</p>
+<p><img src="https://i.imgur.com/sFn4C5z.png" alt="输出结果"></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1><p>在实际的项目开发中很少直接用到 Servlet，但它是 JavaEE 的重要组成部分，是日后进阶学习的基础，对深入理解 Java 企业级应用的开发有重要作用。Servlet 并不复杂，相信经过一些小小的实践，作为初学者的我们可以牢牢掌握这部分的知识！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
     <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/09/Java-Note-1/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -842,7 +1013,7 @@
               
                 <a href="/archives/">
               
-                  <span class="site-state-item-count">4</span>
+                  <span class="site-state-item-count">5</span>
                   <span class="site-state-item-name">日志</span>
                 </a>
               </div>
@@ -892,7 +1063,7 @@
 <h3 class="widget-title">词云</h3>
 <div id="myCanvasContainer" class="widget tagcloud">
 <canvas width="250" height="250" id="resCanvas" style="width=100%">
-<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">2</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试文档/">测试文档</a><span class="tag-list-count">1</span></li></ul>
+<ul class="tag-list"><li class="tag-list-item"><a class="tag-list-link" href="/tags/Java/">Java</a><span class="tag-list-count">3</span></li><li class="tag-list-item"><a class="tag-list-link" href="/tags/测试文档/">测试文档</a><span class="tag-list-count">1</span></li></ul>
 </canvas>
 </div>
 </div>
