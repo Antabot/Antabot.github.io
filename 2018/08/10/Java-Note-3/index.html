@@ -88,7 +88,7 @@
 <meta property="og:description" content="Servlet 与 JSP Servlet 通常使用字符串拼接的方式动态生成 html，大量的 html 内容使代码难以维护、可读性差。于是大佬们想，既然能在 Java 中写 html，能不能在 html 中写 Java 呢？ JSP(JavaServer Pages) 诞生了。 JSP 是基于 Servlet API 的，所以拥有 Servlet 拥有的一些列好处，可以实现各种功能，同时可以很方">
 <meta property="og:locale" content="zh-Hans">
 <meta property="og:image" content="https://i.imgur.com/u2pNEcf.png">
-<meta property="og:updated_time" content="2018-08-10T13:46:37.567Z">
+<meta property="og:updated_time" content="2018-08-10T13:49:36.736Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JavaEE 从入门到放弃（三）：JSP 让世界更美好？">
 <meta name="twitter:description" content="Servlet 与 JSP Servlet 通常使用字符串拼接的方式动态生成 html，大量的 html 内容使代码难以维护、可读性差。于是大佬们想，既然能在 Java 中写 html，能不能在 html 中写 Java 呢？ JSP(JavaServer Pages) 诞生了。 JSP 是基于 Servlet API 的，所以拥有 Servlet 拥有的一些列好处，可以实现各种功能，同时可以很方">
@@ -332,7 +332,7 @@
 <h1 id="JSP-简单介绍"><a href="#JSP-简单介绍" class="headerlink" title="JSP 简单介绍"></a>JSP 简单介绍</h1><p>先动手来个实践。</p>
 <p>本部分内容来自 <a href="http://how2j.cn/k/jsp/jsp-tutorials/530.html?p=50613" target="_blank" rel="noopener">How2J 的 JSP 教程</a></p>
 <h2 id="test-jsp"><a href="#test-jsp" class="headerlink" title="test.jsp"></a>test.jsp</h2><p>在 web 目录下新建一个文件 test.jsp<br>(Tomcat 的 web 根目录为 /webapps/ROOT) </p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@page contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot; import=&quot;java.util.*&quot;%&gt;</span><br><span class="line"> </span><br><span class="line">Hello JSP</span><br><span class="line"> </span><br><span class="line">&lt;br&gt;</span><br><span class="line"> </span><br><span class="line">&lt;%=new Date().toLocaleString()%&gt;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@page contentType=&quot;text/html; charset=UTF-8&quot;</span><br><span class="line">    pageEncoding=&quot;UTF-8&quot; import=&quot;java.util.*&quot;%&gt;</span><br><span class="line"> </span><br><span class="line">hello,jsp</span><br><span class="line"> </span><br><span class="line">&lt;br&gt;</span><br><span class="line"> </span><br><span class="line">&lt;%=new Date().toLocaleString()%&gt;</span><br></pre></td></tr></table></figure>
 <p>访问 localhost/test.jsp，可以看到运行结果</p>
 <p><img src="https://i.imgur.com/u2pNEcf.png" alt=""></p>
 <h2 id="代码分析"><a href="#代码分析" class="headerlink" title="代码分析"></a>代码分析</h2><h3 id="Page-指令"><a href="#Page-指令" class="headerlink" title="Page 指令"></a>Page 指令</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&lt;%@page contentType=&quot;text/html; charset=UTF-8&quot;  pageEncoding=&quot;UTF-8&quot; import=&quot;java.util.*&quot;%&gt;</span><br></pre></td></tr></table></figure>
