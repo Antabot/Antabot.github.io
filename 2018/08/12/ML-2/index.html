@@ -68,7 +68,7 @@
 
 
 
-  <meta name="keywords" content="Hexo, NexT" />
+  <meta name="keywords" content="机器学习," />
 
 
 
@@ -79,17 +79,18 @@
 
 
 
-<meta name="description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="description" content="机器学习初步：数据预处理机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。 导入需要的库利用 Python 进行数据分析所必须的库有两个。 NumPy 包含了各种数学计算函数。 Pandas 用于导入和管理数据集。 通常我们使用以下形式导入这两个库： 12import numpy as npimport pandas as pd 导入">
+<meta name="keywords" content="机器学习">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Hello World">
-<meta property="og:url" content="http://yoursite.com/2018/07/06/hello-world/index.html">
+<meta property="og:title" content="机器学习白学笔记（二）：数据预处理">
+<meta property="og:url" content="http://yoursite.com/2018/08/12/ML-2/index.html">
 <meta property="og:site_name" content="Gao">
-<meta property="og:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta property="og:description" content="机器学习初步：数据预处理机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。 导入需要的库利用 Python 进行数据分析所必须的库有两个。 NumPy 包含了各种数学计算函数。 Pandas 用于导入和管理数据集。 通常我们使用以下形式导入这两个库： 12import numpy as npimport pandas as pd 导入">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-07-06T11:56:37.062Z">
+<meta property="og:updated_time" content="2018-08-12T09:03:40.530Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hello World">
-<meta name="twitter:description" content="Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub. Quick">
+<meta name="twitter:title" content="机器学习白学笔记（二）：数据预处理">
+<meta name="twitter:description" content="机器学习初步：数据预处理机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。 导入需要的库利用 Python 进行数据分析所必须的库有两个。 NumPy 包含了各种数学计算函数。 Pandas 用于导入和管理数据集。 通常我们使用以下形式导入这两个库： 12import numpy as npimport pandas as pd 导入">
 
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/2018/07/06/hello-world/"/>
+  <link rel="canonical" href="http://yoursite.com/2018/08/12/ML-2/"/>
 
 
 
 
 
-  <title>Hello World | Gao</title>
+  <title>机器学习白学笔记（二）：数据预处理 | Gao</title>
   
 
 
@@ -254,7 +255,7 @@
   
   
   <div class="post-block">
-    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/07/06/hello-world/">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2018/08/12/ML-2/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="name" content="Loven Gao">
@@ -271,7 +272,7 @@
 
         
         
-          <h1 class="post-title" itemprop="name headline">Hello World</h1>
+          <h1 class="post-title" itemprop="name headline">机器学习白学笔记（二）：数据预处理</h1>
         
 
         <div class="post-meta">
@@ -283,8 +284,8 @@
               
                 <span class="post-meta-item-text">发表于</span>
               
-              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-07-06T19:56:37+08:00">
-                2018-07-06
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2018-08-12T17:02:18+08:00">
+                2018-08-12
               </time>
             
 
@@ -326,15 +327,47 @@
       
 
       
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="noopener">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="noopener">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="noopener">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="noopener">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo new <span class="string">"My New Post"</span></span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="noopener">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo server</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="noopener">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo generate</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="noopener">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ hexo deploy</span><br></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="noopener">Deployment</a></p>
+        <h1 id="机器学习初步：数据预处理"><a href="#机器学习初步：数据预处理" class="headerlink" title="机器学习初步：数据预处理"></a>机器学习初步：数据预处理</h1><p>机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。</p>
+<h2 id="导入需要的库"><a href="#导入需要的库" class="headerlink" title="导入需要的库"></a>导入需要的库</h2><p>利用 Python 进行数据分析所必须的库有两个。</p>
+<p><strong>NumPy</strong> 包含了各种数学计算函数。</p>
+<p><strong>Pandas</strong> 用于导入和管理数据集。</p>
+<p>通常我们使用以下形式导入这两个库：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> numpy <span class="keyword">as</span> np</span><br><span class="line"><span class="keyword">import</span> pandas <span class="keyword">as</span> pd</span><br></pre></td></tr></table></figure>
+<h2 id="导入数据集"><a href="#导入数据集" class="headerlink" title="导入数据集"></a>导入数据集</h2><p>数据集通常是 .csv 格式。CSV 以纯文本形式保存表格数据，文件的每一行是一条数据记录。我们使用 Pandas 的 read_csv 方法读取本地 .csv 文件作为一个数据帧（dataframe），然后从数据帧中制作自变量和因变量的矩阵和向量。 </p>
+<p>示例数据地址：<a href="https://github.com/Avik-Jain/100-Days-Of-ML-Code/tree/master/datasets" target="_blank" rel="noopener">GitHub - Avik-Jain/100-Days-Of-ML-Code/datasets</a></p>
+<p>可将数据下载到本地，放在 Jupyter Notebook 工作目录下，或通过 upload 导入。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataset = pd.read_csv(Data.csv)</span><br><span class="line"><span class="comment"># X 获取所有行从第0列到倒数第1列的数据（从0起算）</span></span><br><span class="line">X = dataset.iloc[ : ,:<span class="number">-1</span>].values</span><br><span class="line"><span class="comment"># Y 获取所有行第3列的数据</span></span><br><span class="line">Y = dataset.iloc[ : , <span class="number">3</span>].values</span><br></pre></td></tr></table></figure>
+<p>iloc 的作用是通过行列号来获取数据，而 loc 则是通过标签索引数据。</p>
+<p>导入后，dataset 的数据如下</p>
+<pre><code>   Country    Age     Salary    Purchased
+0    France    44.0    72000.0      No
+1    Spain    27.0    48000.0      Yes
+2    Germany    30.0    54000.0      No
+3    Spain    38.0    61000.0      No
+4    Germany    40.0    NaN          Yes
+5    France    35.0    58000.0      Yes
+6    Spain    NaN        52000.0      No
+7    France    48.0    79000.0      Yes
+8    Germany    50.0    83000.0      No
+9    France    37.0    67000.0      Yes
+</code></pre><h2 id="处理丢失数据"><a href="#处理丢失数据" class="headerlink" title="处理丢失数据"></a>处理丢失数据</h2><p>我们得到的数据可能由于各种原因存在缺失。为了不降低机器学习模型的性能，我们可以通过一些方法处理这些数据，比如使用整列数据的平均值或中位数来替换丢失的数据。</p>
+<p>可以使用 sklearn.preprocessing 库中的 Imputer 类来完成这项任务。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line">imputer = Imputer(missing_values = <span class="string">"NaN"</span>, strategy = <span class="string">"mean"</span>, axis = <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 训练模型，拟合出作为替换值的均值</span></span><br><span class="line">imputer = imputer.fit(X[ : , <span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"><span class="comment"># 处理需要补全的数据</span></span><br><span class="line">X[ : , <span class="number">1</span>:<span class="number">3</span>] = imputer.transform(X[ : , <span class="number">1</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
+<p>Imputer 参数解释：</p>
+<p>missing_values：缺失值，可以为整数或 NaN ，默认为 NaN</p>
+<p>strategy：替换策略，默认用均值 ‘mean’ 替换，还可以选择中位数 ‘median’ 或众数 ‘most_frequent’</p>
+<p>axis：指定轴数，默认 axis = 0 代表列，axis = 1 代表行</p>
+<h2 id="解析分类数据"><a href="#解析分类数据" class="headerlink" title="解析分类数据"></a>解析分类数据</h2><p>分类数据是具有标签值而不是数值的变量，取值范围通常固定（类似枚举值），不能用于模型的数学计算，需要解析成数字。为实现这个功能，我们从 sklearn.preprocessing 库中导入 LabelEnconder 类。</p>
+<p>经过编码之后的变量称为<strong>虚拟变量</strong>或<strong>哑变量（Dummy Variable）</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> LabelEncoder, OneHotEncoder</span><br><span class="line">labelencoder_X = LabelEncoder()</span><br><span class="line"><span class="comment"># 对 X 中的标签数据编码</span></span><br><span class="line">X[ : , <span class="number">0</span>] = labelencoder_X.fit_transform(X[ : , <span class="number">0</span>])</span><br><span class="line"><span class="comment"># 使用 onehotencoder 对经过标签编码的第0行数据进行独热编码</span></span><br><span class="line">onehotencoder = OneHotEncoder(categorical_features = [<span class="number">0</span>])</span><br><span class="line">X = onehotencoder.fit_transform(X).toarray()</span><br><span class="line"><span class="comment"># 对 Y 中的标签数据编码</span></span><br><span class="line">labelencoder_Y = LabelEncoder()</span><br><span class="line">Y =  labelencoder_Y.fit_transform(Y)</span><br></pre></td></tr></table></figure>
+<p>关于独热编码，参考<a href="https://www.cnblogs.com/king-lps/p/7846414.html" target="_blank" rel="noopener">博客园 - OneHotEncoder独热编码和 LabelEncoder标签编码</a></p>
+<h2 id="分割数据集"><a href="#分割数据集" class="headerlink" title="分割数据集"></a>分割数据集</h2><p>我们需要把数据集拆分成用来训练模型的<strong>训练集</strong>和用来验证模型的<strong>测试集</strong>。两者的比例一般是 80：20。这里需要导入 sklearn.crossvalidation 库中的 train_test_split()方法。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.cross_validation <span class="keyword">import</span> train_test_split</span><br><span class="line"><span class="comment"># 分割数据集</span></span><br><span class="line">X_train, X_test, Y_train, Y_test = train_test_split( X , Y , test_size = <span class="number">0.2</span>, random_state = <span class="number">0</span>)</span><br></pre></td></tr></table></figure>
+<h2 id="特征缩放"><a href="#特征缩放" class="headerlink" title="特征缩放"></a>特征缩放</h2><p>大部分机器学习算法在计算中使用数据点之间的欧氏距离，数据的某一特征值的量级在很大程度上决定了距离的大小。因此，应该把每个特征的取值限定在某一范围内，称为特征缩放。常用的方法有调节比例、标准化等。这里我们导入 sklearn.preprocessing 库的 StandardScalar 类。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> StandardScaler</span><br><span class="line">sc_X = StandardScaler()</span><br><span class="line">X_train = sc_X.fit_transform(X_train)</span><br><span class="line">X_test = sc_X.fit_transform(X_test)</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>作者：小高<br>更多精彩内容，欢迎访问：<a href="https://lovengao.com" target="_blank" rel="noopener">LovenGao.com</a>，电脑端食用效果更佳，骗个点击量，hhhh</p>
+</blockquote>
 
       
     </div>
@@ -350,6 +383,12 @@
 
     <footer class="post-footer">
       
+        <div class="post-tags">
+          
+            <a href="/tags/机器学习/" rel="tag"># 机器学习</a>
+          
+        </div>
+      
 
       
       
@@ -359,15 +398,15 @@
         <div class="post-nav">
           <div class="post-nav-next post-nav-item">
             
+              <a href="/2018/08/11/ML-1/" rel="next" title="机器学习白学笔记（一）：搭建 Python 环境">
+                <i class="fa fa-chevron-left"></i> 机器学习白学笔记（一）：搭建 Python 环境
+              </a>
+            
           </div>
 
           <span class="post-nav-divider"></span>
 
           <div class="post-nav-prev post-nav-item">
-            
-              <a href="/2018/07/08/test/" rel="prev" title="测试">
-                测试 <i class="fa fa-chevron-right"></i>
-              </a>
             
           </div>
         </div>
@@ -494,7 +533,7 @@
             
 
             
-              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#Quick-Start"><span class="nav-number">1.</span> <span class="nav-text">Quick Start</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Create-a-new-post"><span class="nav-number">1.1.</span> <span class="nav-text">Create a new post</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Run-server"><span class="nav-number">1.2.</span> <span class="nav-text">Run server</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Generate-static-files"><span class="nav-number">1.3.</span> <span class="nav-text">Generate static files</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Deploy-to-remote-sites"><span class="nav-number">1.4.</span> <span class="nav-text">Deploy to remote sites</span></a></li></ol></li></ol></div>
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#机器学习初步：数据预处理"><span class="nav-number">1.</span> <span class="nav-text">机器学习初步：数据预处理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#导入需要的库"><span class="nav-number">1.1.</span> <span class="nav-text">导入需要的库</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#导入数据集"><span class="nav-number">1.2.</span> <span class="nav-text">导入数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#处理丢失数据"><span class="nav-number">1.3.</span> <span class="nav-text">处理丢失数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#解析分类数据"><span class="nav-number">1.4.</span> <span class="nav-text">解析分类数据</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#分割数据集"><span class="nav-number">1.5.</span> <span class="nav-text">分割数据集</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#特征缩放"><span class="nav-number">1.6.</span> <span class="nav-text">特征缩放</span></a></li></ol></li></ol></div>
             
 
           </div>
