@@ -87,10 +87,12 @@
 <meta property="og:site_name" content="Gao">
 <meta property="og:description" content="机器学习初步：数据预处理机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。 导入需要的库利用 Python 进行数据分析所必须的库有两个。 NumPy 包含了各种数学计算函数。 Pandas 用于导入和管理数据集。 通常我们使用以下形式导入这两个库： 12import numpy as npimport pandas as pd 导入">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-08-12T09:03:40.530Z">
+<meta property="og:image" content="https://i.imgur.com/SqOX62a.png">
+<meta property="og:updated_time" content="2018-08-12T09:24:04.038Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="机器学习白学笔记（二）：数据预处理">
 <meta name="twitter:description" content="机器学习初步：数据预处理机器学习离不开大量的数据。在对这些数据进行分析前，我们先学习一下在 Python 中如何导入数据并对它进行预处理。 导入需要的库利用 Python 进行数据分析所必须的库有两个。 NumPy 包含了各种数学计算函数。 Pandas 用于导入和管理数据集。 通常我们使用以下形式导入这两个库： 12import numpy as npimport pandas as pd 导入">
+<meta name="twitter:image" content="https://i.imgur.com/SqOX62a.png">
 
 
 
@@ -339,18 +341,8 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">dataset = pd.read_csv(Data.csv)</span><br><span class="line"><span class="comment"># X 获取所有行从第0列到倒数第1列的数据（从0起算）</span></span><br><span class="line">X = dataset.iloc[ : ,:<span class="number">-1</span>].values</span><br><span class="line"><span class="comment"># Y 获取所有行第3列的数据</span></span><br><span class="line">Y = dataset.iloc[ : , <span class="number">3</span>].values</span><br></pre></td></tr></table></figure>
 <p>iloc 的作用是通过行列号来获取数据，而 loc 则是通过标签索引数据。</p>
 <p>导入后，dataset 的数据如下</p>
-<pre><code>   Country    Age     Salary    Purchased
-0    France    44.0    72000.0      No
-1    Spain    27.0    48000.0      Yes
-2    Germany    30.0    54000.0      No
-3    Spain    38.0    61000.0      No
-4    Germany    40.0    NaN          Yes
-5    France    35.0    58000.0      Yes
-6    Spain    NaN        52000.0      No
-7    France    48.0    79000.0      Yes
-8    Germany    50.0    83000.0      No
-9    France    37.0    67000.0      Yes
-</code></pre><h2 id="处理丢失数据"><a href="#处理丢失数据" class="headerlink" title="处理丢失数据"></a>处理丢失数据</h2><p>我们得到的数据可能由于各种原因存在缺失。为了不降低机器学习模型的性能，我们可以通过一些方法处理这些数据，比如使用整列数据的平均值或中位数来替换丢失的数据。</p>
+<p><img src="https://i.imgur.com/SqOX62a.png" alt=""></p>
+<h2 id="处理丢失数据"><a href="#处理丢失数据" class="headerlink" title="处理丢失数据"></a>处理丢失数据</h2><p>我们得到的数据可能由于各种原因存在缺失。为了不降低机器学习模型的性能，我们可以通过一些方法处理这些数据，比如使用整列数据的平均值或中位数来替换丢失的数据。</p>
 <p>可以使用 sklearn.preprocessing 库中的 Imputer 类来完成这项任务。</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> sklearn.preprocessing <span class="keyword">import</span> Imputer</span><br><span class="line">imputer = Imputer(missing_values = <span class="string">"NaN"</span>, strategy = <span class="string">"mean"</span>, axis = <span class="number">0</span>)</span><br><span class="line"><span class="comment"># 训练模型，拟合出作为替换值的均值</span></span><br><span class="line">imputer = imputer.fit(X[ : , <span class="number">1</span>:<span class="number">3</span>])</span><br><span class="line"><span class="comment"># 处理需要补全的数据</span></span><br><span class="line">X[ : , <span class="number">1</span>:<span class="number">3</span>] = imputer.transform(X[ : , <span class="number">1</span>:<span class="number">3</span>])</span><br></pre></td></tr></table></figure>
 <p>Imputer 参数解释：</p>
